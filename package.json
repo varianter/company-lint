@@ -1,0 +1,27 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec \"ts-node $1\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@keyv/mongo": "^1.1.0",
+    "@mojotech/json-type-validation": "^3.1.0",
+    "@types/node": "^10.12.18",
+    "dotenv": "^6.2.0",
+    "keyv": "^3.1.0",
+    "mongodb": "^3.1.13"
+  },
+  "devDependencies": {
+    "@types/keyv": "^3.1.0",
+    "@types/mongodb": "^3.1.19",
+    "nodemon": "^1.18.9",
+    "ts-node": "^8.0.1",
+    "typescript": "^3.2.4"
+  }
+}

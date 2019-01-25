@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "./api/**/*.ts",
+      "use": "@now/node@canary"
+    }
+  ],
+  "env": {
+    "IS_NOW": "true",
+    "DB_CONNECTION_STRING": "@db-connection-string"
+  },
+  "routes": [{ "src": "/api/(.*)", "dest": "/api/$1" }]
+}
