@@ -21,7 +21,6 @@ const handler = json<LintRuleSet, RespondType>(async function(
 
     const data = await jsonBody(req);
     const lintRules = lintRuleDecoder.runWithException(data);
-
     const result = await collection.insertOne({
       created: Date.now().toString(),
       questions: lintRules
