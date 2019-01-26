@@ -6,7 +6,6 @@ const PASSWORD = process.env.ACCESS_TOKEN;
 
 type OutFunc<T> = (data: T) => void;
 type ErrorFunc<T> = (code: number, data: T) => void;
-
 type Handler<G, T> = (
   out: OutFunc<T>,
   collection: Collection<G>,
@@ -21,14 +20,17 @@ function compose<T, G, D>(f: ((arg: G) => D), g: ((arg: T) => G)) {
   return (arg: T) => f(g(arg));
 }
 
-function createOut<T>(res: ServerResponse): OutFunc<T> {
+export function createOut<T>(res: ServerResponse): OutFunc<T> {
   return compose(
     res.end.bind(res),
     JSON.stringify
   );
 }
 
-function createError<T>(res: ServerResponse, out: OutFunc<T>): ErrorFunc<T> {
+export function createError<T>(
+  res: ServerResponse,
+  out: OutFunc<T>
+): ErrorFunc<T> {
   return (code: number, obj: T) => {
     res.writeHead(code, { "Content-Type": "application/json" });
     return out(obj);
@@ -49,8 +51,8 @@ export function json<G, T>(handler: Handler<G, T>) {
     }
   }
 
-  // For running endpoint locally
-  if (!process.env.IS_NOW) {
+  // For running standalone endpoint locally
+  if (!process.env.IS_NOW && !process.env.IS_TOPOLOGY_STARTER) {
     createServer(innerHandler).listen(3000, function() {
       console.log("Started local server at http://localhost:3000");
     });

@@ -11,17 +11,29 @@ To connect to a MongoDB database, copy and rename the `.env.example` file and
 set connection string to `DB_CONNECTION_STRING`. This will allow you to connect
 to the database. Also set `DB_DATABASE_NAME`.
 
+### Running entire topology
+
+You can reproduce the entire API topology as running on now locally by doing:
+
+```
+npm run topology
+```
+
+This will reproduce the routing from now.sh on localhost.
+
 ### Running
 
-API services run indevidually as endpoints in a serverless infrastructure. To
-run locally you can start each service by running the following command:
+You can also run API services indevidually locally, by starting each service
+with:
 
 ```sh
 npm run dev ./api/add/index.ts
 
 # or
-
 npm run dev ./api/all/index.ts
+
+# ..etc
+npm run dev ./api/<ENDPOINT>/index.ts
 ```
 
 ## Optional Authorization
