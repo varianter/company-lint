@@ -1,11 +1,20 @@
-// import prompts from "prompts";
 import fromRuleSet from "./prompt-flows/from-ruleset";
 import newRuleSet from "./prompt-flows/new-ruleset";
 
-import { latest } from "./api";
+import { LintCategory } from "../lib/types";
+import { latest, add } from "./api";
 
-function empty<T>(obj: T) {
-  return Object.keys(obj).length === 0;
+function empty(obj: LintCategory[]) {
+  if (!obj || Object.keys(obj).length === 0) {
+    return true;
+  }
+  if (obj.length === 0) {
+    return true;
+  }
+  const questions = obj
+    .map(category => category.questions.length)
+    .reduce((a, b) => a + b, 0);
+  return questions === 0;
 }
 
 async function start() {
@@ -14,8 +23,16 @@ async function start() {
     ? newRuleSet()
     : fromRuleSet(l.categories));
 
-  console.log("New set:", JSON.stringify(data, null, 2));
-  // add(data);
+  if (empty(data)) {
+    return console.log("Empty rule set. Not storing.");
+  }
+
+  try {
+    const id = await add(data);
+    console.log(`Stored lint results (id ${id})`);
+  } catch (e) {
+    console.log("Could not save:", e.message);
+  }
 }
 
 start();
