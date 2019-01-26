@@ -1,10 +1,19 @@
 import { json } from "../../lib/api";
-import { LintRule } from "../../lib/types";
+import { LintRuleSet } from "../../lib/types";
 
-const handler = json(async function(respond, collection) {
-  const data = await collection.find<LintRule>({});
+type RespondType = { success: true; lints: LintRuleSet[] };
+
+const handler = json<LintRuleSet, RespondType>(async function(
+  respond,
+  collection
+) {
+  const data = await collection.find();
   const lints = await data.toArray();
-  return respond({ lints });
+
+  return respond({
+    success: true,
+    lints
+  });
 });
 
 export default handler;
