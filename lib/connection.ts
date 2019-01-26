@@ -4,9 +4,12 @@ import { MongoClient, Collection } from "mongodb";
 if (!process.env.DB_CONNECTION_STRING) {
   throw new Error("missing DB_CONNECTION_STRING");
 }
+if (!process.env.DB_DATABASE_NAME) {
+  throw new Error("missing DB_DATABASE_NAME");
+}
 
 const dbStringUri = process.env.DB_CONNECTION_STRING;
-const dbName = "variant-lint";
+const dbName = process.env.DB_DATABASE_NAME;
 const collectionName = "lints";
 
 const client = new MongoClient(dbStringUri, { useNewUrlParser: true });

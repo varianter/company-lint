@@ -86,10 +86,7 @@ function validateAuthorization(
   res: ServerResponse
 ) {
   const error = createError(res, createOut(res));
-  const noAccess = () =>
-    error(401, {
-      error: "No access."
-    });
+  const noAccess = () => error(401, { error: "No access." });
 
   if (!req.headers || !req.headers.authorization) {
     return noAccess();
