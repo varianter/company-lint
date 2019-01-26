@@ -71,10 +71,10 @@ export function jsonSecured<G, T>(handler: Handler<G, T>) {
   });
 }
 
-export async function jsonBody(request: IncomingMessage) {
+export async function jsonBody<T>(request: IncomingMessage) {
   let body: Uint8Array[] = [];
 
-  return new Promise(function(res, rej) {
+  return new Promise<T>(function(res, rej) {
     request
       .on("data", body.push.bind(body))
       .on("error", rej)

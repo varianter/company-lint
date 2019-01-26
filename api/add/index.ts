@@ -1,6 +1,6 @@
 import { lintRuleDecoder } from "../../lib/types.validation";
 import { jsonSecured, jsonBody } from "../../lib/api";
-import { LintRuleSet } from "../../lib/types";
+import { LintRuleSet, LintRule } from "../../lib/types";
 import { ObjectId } from "mongodb";
 import { constants } from "http2";
 
@@ -18,7 +18,7 @@ const handler = jsonSecured<LintRuleSet, RespondType>(async function(
       throw new Error("Method not allowed");
     }
 
-    const data = await jsonBody(req);
+    const data = await jsonBody<LintRule[]>(req);
     const lintRules = lintRuleDecoder.runWithException(data);
     const result = await collection.insertOne({
       created: Date.now().toString(),
