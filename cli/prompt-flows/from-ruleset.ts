@@ -17,6 +17,15 @@ async function answer(
   if (typeof assert.assert === "undefined") {
     return undefined;
   }
+  const removeQuestion = await prompts({
+    type: "confirm",
+    name: "remove",
+    message: "Should this question be removed?",
+    initial: false
+  });
+  if (removeQuestion.remove) {
+    return undefined;
+  }
 
   const comment = await prompts({
     type: "text",
@@ -28,15 +37,6 @@ async function answer(
     name: "suggestedEdit",
     message: "Any change to the original question? (leave empty if not)"
   });
-  const removeQuestion = await prompts({
-    type: "confirm",
-    name: "remove",
-    message: "Should this question be removed?",
-    initial: false
-  });
-  if (removeQuestion.remove) {
-    return undefined;
-  }
 
   return {
     question,
