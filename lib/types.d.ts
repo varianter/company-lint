@@ -14,3 +14,7 @@ export type LintRuleSet = {
   created: string;
   categories: Array<LintCategory>;
 };
+
+export type AddRespondType =
+  | { success: true; inserted: string }
+  | { success: false; error: string };

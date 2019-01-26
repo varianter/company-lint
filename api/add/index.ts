@@ -1,14 +1,9 @@
+import { LintRuleSet, LintCategory, AddRespondType } from "../../lib/types";
 import { lintRuleDecoder } from "../../lib/types.validation";
 import { jsonSecured, jsonBody } from "../../lib/api";
-import { LintRuleSet, LintCategory } from "../../lib/types";
-import { ObjectId } from "mongodb";
 import { constants } from "http2";
 
-type RespondType =
-  | { success: true; inserted: ObjectId }
-  | { success: false; error: string };
-
-const handler = jsonSecured<LintRuleSet, RespondType>(async function(
+const handler = jsonSecured<LintRuleSet, AddRespondType>(async function(
   respond,
   collection,
   { req, error }
@@ -27,7 +22,7 @@ const handler = jsonSecured<LintRuleSet, RespondType>(async function(
 
     respond({
       success: true,
-      inserted: result.insertedId
+      inserted: result.insertedId.toHexString()
     });
   } catch (e) {
     error(constants.HTTP_STATUS_BAD_REQUEST, {
