@@ -5,13 +5,15 @@ import { getCollection, Collection } from "./connection";
 const PASSWORD = process.env.ACCESS_TOKEN;
 
 type OutFunc<T> = (data: T) => void;
+type ErrorFunc<T> = (code: number, data: T) => void;
+
 type Handler<G, T> = (
   out: OutFunc<T>,
   collection: Collection<G>,
   http: {
     req: IncomingMessage;
     res: ServerResponse;
-    error: (code: number, obj: T) => void;
+    error: ErrorFunc<T>;
   }
 ) => Promise<void>;
 
@@ -19,14 +21,14 @@ function compose<T, G, D>(f: ((arg: G) => D), g: ((arg: T) => G)) {
   return (arg: T) => f(g(arg));
 }
 
-function createOut(res: ServerResponse) {
+function createOut<T>(res: ServerResponse): OutFunc<T> {
   return compose(
     res.end.bind(res),
     JSON.stringify
   );
 }
 
-function createError<T>(res: ServerResponse, out: OutFunc<T>) {
+function createError<T>(res: ServerResponse, out: OutFunc<T>): ErrorFunc<T> {
   return (code: number, obj: T) => {
     res.writeHead(code, { "Content-Type": "application/json" });
     return out(obj);
