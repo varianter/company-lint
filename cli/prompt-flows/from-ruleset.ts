@@ -2,12 +2,6 @@ import { confirm, questionLoop, categoryLoop } from "./utils";
 import { LintCategory, LintRule } from "../../lib/types";
 import prompts from "prompts";
 
-const opts = {
-  onCancel() {
-    return true;
-  }
-};
-
 async function answer(
   originalQuestion: LintRule
 ): Promise<LintRule | undefined> {
@@ -24,27 +18,31 @@ async function answer(
     return undefined;
   }
 
-  const extra = await prompts(
-    [
-      {
-        type: "text",
-        name: "comment",
-        message: "Any comments on the point? (leave empty if not)"
-      },
-      {
-        type: "text",
-        name: "suggestedEdit",
-        message: "Any change to the original question? (leave empty if not)"
-      }
-    ],
-    opts
-  );
+  const comment = await prompts({
+    type: "text",
+    name: "comment",
+    message: "Any comments on the point? (leave empty if not)"
+  });
+  const suggestedEdit = await prompts({
+    type: "text",
+    name: "suggestedEdit",
+    message: "Any change to the original question? (leave empty if not)"
+  });
+  const removeQuestion = await prompts({
+    type: "confirm",
+    name: "remove",
+    message: "Should this question be removed?",
+    initial: false
+  });
+  if (removeQuestion.remove) {
+    return undefined;
+  }
 
   return {
     question,
     assert: assert.assert,
-    comment: extra.comment,
-    suggestedEdit: extra.suggestedEdit
+    comment: comment.comment,
+    suggestedEdit: suggestedEdit.suggestedEdit
   };
 }
 
