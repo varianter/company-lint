@@ -11,7 +11,7 @@ type Handler<G, T> = (
   http: {
     req: IncomingMessage;
     res: ServerResponse;
-    error: <T>(code: number, obj: T) => void;
+    error: (code: number, obj: T) => void;
   }
 ) => Promise<void>;
 

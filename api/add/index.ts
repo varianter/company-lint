@@ -4,10 +4,9 @@ import { LintRuleSet } from "../../lib/types";
 import { ObjectId } from "mongodb";
 import { constants } from "http2";
 
-type RespondBase = { success: boolean };
 type RespondType =
-  | RespondBase & { inserted: ObjectId }
-  | RespondBase & { error: string };
+  | { success: true; inserted: ObjectId }
+  | { success: false; error: string };
 
 const handler = jsonSecured<LintRuleSet, RespondType>(async function(
   respond,
