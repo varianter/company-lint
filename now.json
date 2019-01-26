@@ -8,7 +8,8 @@
   ],
   "env": {
     "IS_NOW": "true",
-    "DB_CONNECTION_STRING": "@db-connection-string"
+    "DB_CONNECTION_STRING": "@db-connection-string",
+    "ACCESS_TOKEN": "@access_token"
   },
   "routes": [{ "src": "/api/(.*)", "dest": "/api/$1" }]
 }

@@ -1,5 +1,5 @@
 import { lintRuleDecoder } from "../../lib/types.validation";
-import { json, jsonBody } from "../../lib/api";
+import { jsonSecured, jsonBody } from "../../lib/api";
 import { LintRuleSet } from "../../lib/types";
 import { ObjectId } from "mongodb";
 import { constants } from "http2";
@@ -9,7 +9,7 @@ type RespondType =
   | RespondBase & { inserted: ObjectId }
   | RespondBase & { error: string };
 
-const handler = json<LintRuleSet, RespondType>(async function(
+const handler = jsonSecured<LintRuleSet, RespondType>(async function(
   respond,
   collection,
   { req, error }
