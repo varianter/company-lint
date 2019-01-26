@@ -1,4 +1,4 @@
-import { LintRule } from "./types";
+import { LintCategory } from "./types";
 import {
   Decoder,
   object,
@@ -8,11 +8,16 @@ import {
   optional
 } from "@mojotech/json-type-validation";
 
-export const lintRuleDecoder: Decoder<Array<LintRule>> = array(
+export const lintRuleDecoder: Decoder<Array<LintCategory>> = array(
   object({
-    question: string(),
-    assert: boolean(),
-    comment: optional(string()),
-    suggestedEdit: optional(string())
+    name: string(),
+    questions: array(
+      object({
+        question: string(),
+        assert: boolean(),
+        comment: optional(string()),
+        suggestedEdit: optional(string())
+      })
+    )
   })
 );

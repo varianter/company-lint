@@ -5,7 +5,12 @@ export type LintRule = {
   suggestedEdit?: string;
 };
 
+export type LintCategory = {
+  name: string;
+  questions: Array<LintRule>;
+};
+
 export type LintRuleSet = {
   created: string;
-  questions: Array<LintRule>;
+  categories: Array<LintCategory>;
 };
