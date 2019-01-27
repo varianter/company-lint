@@ -1,3 +1,24 @@
+// Type definitions for @variant/lint 1.0.0
+// Project: @variant/lint
+// Definitions by: Mikael Brevik <https://mib.im>
+
+export function connect(config: Configuration): LintData;
+
+export type Configuration = {
+  api: string;
+  password?: string;
+};
+
+export interface LintData {
+  all(): Promise<LintRuleSet[]>;
+  latest(): Promise<LintRuleSet>;
+  add(rulest: LintRuleSet): Promise<string>;
+}
+
+export type AddRespondType =
+  | { success: true; inserted: string }
+  | { success: false; error: string };
+
 export type LintRule = {
   question: string;
   assert: boolean;
@@ -16,7 +37,3 @@ export type LintRuleSet = {
   save: boolean;
   categories: Array<LintCategory>;
 };
-
-export function all(): Promise<LintRuleSet[]>;
-export function latest(): Promise<LintRuleSet>;
-export function add(rulest: LintRuleSet): Promise<string>;

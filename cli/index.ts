@@ -1,1 +1,1 @@
-export { all, latest, add } from "./lib/api";
+export { default } from "./lib/connect-api";

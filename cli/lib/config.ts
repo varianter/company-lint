@@ -1,9 +1,5 @@
 import rc from "rc";
-
-type Configuration = {
-  api: string;
-  password?: string;
-};
+import { Configuration } from "../index.d";
 
 export default rc("variantlint", {
   api: "http://localhost:3000/"
