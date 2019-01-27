@@ -1,0 +1,6 @@
+tools/
+cli/
+node_modules/
+.prettierrc
+.env
+.env.example
