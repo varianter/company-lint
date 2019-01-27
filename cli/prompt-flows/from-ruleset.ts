@@ -1,4 +1,4 @@
-import { confirm, questionLoop, categoryLoop } from "./utils";
+import { confirm, questionLoop, categoryLoop } from "./questions";
 import { LintCategory, LintRule } from "../../lib/types";
 import prompts from "prompts";
 
