@@ -1,7 +1,25 @@
-# WIP Variant Lint tool
+# Company Culture Lint tool
 
-Tool for tracking Variant company linting statuses. Includes both CLI, API, and
-potential website and reporting.
+You often have metrics for the business side of things for your company. But
+measuring other goals is harder. E.g. are you on the right track for building
+community? Are people feeling included? To better keep ourself in check, we are
+experimenting with a
+[company lint](<https://en.wikipedia.org/wiki/Lint_(software)>). A set of
+quantifiable rules with goals we want to achieve. Every month we run the rule
+set and see where we succeed on and where we fail.
+
+If we fail, we consider what measures we take to make it green for the next
+month. We also evaluate the rules and either leave them, remove them, change the
+goal or the wording.
+
+We think this is a great way to communicate measurable goals to the entire
+company and build collective ownership for achieving them.
+
+## About the repo
+
+This repo contains both API and CLI tool for tracking these lint rules. You can
+run the CLI out of the box on your own API and use this repo to deploy API to
+[now.sh](https://now.sh)
 
 ## Running locally
 

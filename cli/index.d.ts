@@ -6,7 +6,7 @@ export function connect(config: Configuration): LintData;
 
 export type Configuration = {
   api: string;
-  password?: string;
+  token?: string;
 };
 
 export interface LintData {

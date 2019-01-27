@@ -54,11 +54,11 @@ function padUrl(url: string): string {
 }
 
 function getHeaders(config: Configuration): Headers {
-  if (!config.password) {
+  if (!config.token) {
     return new Headers();
   }
 
   return new Headers({
-    Authorization: `Bearer ${config.password}`
+    Authorization: `Bearer ${config.token}`
   });
 }
