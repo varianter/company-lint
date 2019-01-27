@@ -3,6 +3,8 @@ import newRuleSet from "./prompt-flows/new-ruleset";
 
 import { LintCategory } from "../lib/types";
 import { latest, add } from "./api";
+import print from "./printer";
+import { confirm } from "./prompt-flows/questions";
 
 function empty(obj: LintCategory[]) {
   if (!obj || Object.keys(obj).length === 0) {
@@ -25,6 +27,14 @@ async function start() {
 
   if (empty(data)) {
     return console.log("Empty rule set. Not storing.");
+  }
+
+  print(data);
+
+  const save = await confirm("Save rule set?");
+
+  if (!save) {
+    return console.log("Not saving.");
   }
 
   try {
