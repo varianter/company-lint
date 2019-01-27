@@ -43,7 +43,7 @@ export async function newCategoryConfirm(): Promise<boolean> {
 }
 
 export async function newQuestionConfirm(): Promise<boolean> {
-  return confirm("Add more questions?");
+  return confirm("Add more lint rules?");
 }
 
 export async function questionLoop(): Promise<LintRule[]> {
@@ -90,7 +90,7 @@ export async function newQuestion(): Promise<LintRule | undefined> {
       {
         type: "confirm",
         name: "assert",
-        message: "Was it a success?",
+        message: "Was it accomplished?",
         initial: true
       }
     ],

@@ -8,7 +8,7 @@ export async function editQuestion(): Promise<EditTypes> {
   const res = await prompts({
     type: "select",
     name: "edit",
-    message: "Any change or comment to the question?",
+    message: "Any change or comment to the lint rule?",
     choices: [
       { title: "No changes", value: "NoChange" },
       { title: "Should be removed", value: "ShouldRemove" },
@@ -100,7 +100,7 @@ async function fromCategory(category: LintCategory): Promise<LintCategory> {
     }
   }
 
-  if (await confirm("Any additional questions?")) {
+  if (await confirm("Should we add additional lint rules?")) {
     questions = questions.concat(await questionLoop());
   }
 
@@ -113,7 +113,7 @@ async function fromCategory(category: LintCategory): Promise<LintCategory> {
 export default async function(
   previous: LintCategory[]
 ): Promise<LintCategory[]> {
-  console.log("Creating lint rule set based on previous lint sets");
+  console.log("Creating lint rule set based on previous rule set");
 
   let categories: LintCategory[] = [];
   for (let category of previous) {
@@ -122,7 +122,7 @@ export default async function(
   }
 
   console.log("\n");
-  if (await confirm("Any additional categories?")) {
+  if (await confirm("Add additional categories?")) {
     categories = categories.concat(await categoryLoop());
   }
 
