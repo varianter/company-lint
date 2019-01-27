@@ -1,5 +1,7 @@
 import runLint from "./commands/lint";
 import runLatest from "./commands/latest";
+import runConfig from "./commands/config";
+
 import yargs from "yargs";
 
 yargs
@@ -7,6 +9,11 @@ yargs
     command: "latest",
     describe: "Get latest lint report",
     handler: syncify(runLatest)
+  })
+  .command({
+    command: "config",
+    describe: "Set/show configuration for connecting to api",
+    handler: syncify(runConfig)
   })
   .command({
     command: "$0",

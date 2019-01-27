@@ -12,3 +12,7 @@ export function empty(obj: LintCategory[]) {
     .reduce((a, b) => a + b, 0);
   return questions === 0;
 }
+
+export function emptyObj<T>(obj: T) {
+  return !obj || Object.keys(obj).length === 0;
+}

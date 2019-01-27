@@ -40,5 +40,5 @@ using the code from this repo: https://github.com/varianter/company-lint
 When you have an API running, you can store connection details by using the CLI:
 
 ```
-npx @variant/cli config -api "https://YOUR_URL" -token "<OPTIONAL_TOKEN_HERE>"
+npx @variant/cli config
 ```
