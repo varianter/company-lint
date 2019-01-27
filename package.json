@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --exec \"ts-node $1\"",
     "topology": "IS_TOPOLOGY_STARTER=true ts-node ./tools/start-topology.ts",
-    "cli": "ts-node ./cli/index.ts"
+    "cli": "cd ./cli && npm start"
   },
   "keywords": [],
   "author": "",
