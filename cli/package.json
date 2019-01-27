@@ -1,16 +1,22 @@
 {
-  "name": "variant-lint-cli",
+  "name": "@variant/lint",
   "version": "1.0.0",
-  "description": "",
+  "description": "CLI tool for doing company linting (culture helper)",
   "main": "./dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "./index.d.ts",
   "scripts": {
     "start": "ts-node ./cli.ts",
     "build": "tsc"
   },
-  "keywords": [],
+  "keywords": [
+    "cli",
+    "company culture",
+    "culture",
+    "lint",
+    "culture health check"
+  ],
   "author": "Mikael Brevik",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@types/node": "^10.12.18",
     "chalk": "^2.4.2",
