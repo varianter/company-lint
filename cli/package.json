@@ -1,6 +1,6 @@
 {
   "name": "@variant/lint",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI tool for doing company linting (culture helper)",
   "main": "./dist/index.js",
   "types": "./index.d.ts",
