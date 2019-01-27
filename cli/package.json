@@ -4,11 +4,10 @@
   "description": "CLI tool for doing company linting (culture helper)",
   "main": "./dist/index.js",
   "types": "./index.d.ts",
-  "files": [
-    "dist/",
-    "index.d.ts"
-  ],
-  "bin": "./dist/cli.js",
+  "files": ["dist/", "index.d.ts"],
+  "bin": {
+    "company-lint": "./dist/cli.js"
+  },
   "scripts": {
     "start": "ts-node ./cli.ts",
     "build": "tsc"
