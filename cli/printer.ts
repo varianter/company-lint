@@ -3,9 +3,9 @@ import chalk from "chalk";
 
 function printRuleSet(rule: LintRule) {
   if (rule.assert) {
-    console.log(chalk.green(`  ✅ ${rule.question}`));
+    console.log(chalk.green(`  ✔︎ ${rule.question}`));
   } else {
-    console.log(chalk.red(`  ❌ ${rule.question}`));
+    console.log(chalk.red(`  ⨯ ${rule.question}`));
   }
   if (rule.comment) {
     console.log(chalk.italic(`    Comment: ${rule.comment}`));
@@ -24,9 +24,13 @@ function printNumberOfSuccesses(category: LintCategory) {
   const success = category.questions.map(i => Number(i.assert)).reduce(add, 0);
 
   if (total !== success) {
-    console.log(chalk.red(` ❌ Some rules didn't pass ${success}/${total}`));
+    console.log(
+      chalk.red(`Some rules didn't pass (success ${success}/${total})`)
+    );
   } else {
-    console.log(chalk.green(` ✅ All rules cleared ${success}/${total} `));
+    console.log(
+      chalk.green(`All rules cleared (success ${success}/${total}) `)
+    );
   }
 }
 
