@@ -94,6 +94,9 @@ async function fromCategory(category: LintCategory): Promise<LintCategory> {
   console.log(`\n${category.name}:`);
   let questions: LintRule[] = [];
   for (let question of category.questions) {
+    // Should it be included?
+    if (question.shouldBeRemoved) continue;
+
     const result = await answer(question);
     if (result) {
       questions.push(result);
