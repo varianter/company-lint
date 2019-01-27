@@ -1,34 +1,26 @@
 {
-  "name": "api",
+  "name": "variant-lint-cli",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec \"ts-node $1\"",
-    "topology": "IS_TOPOLOGY_STARTER=true ts-node ./tools/start-topology.ts",
-    "cli": "ts-node ./cli/index.ts"
+    "start": "ts-node ./index.ts",
+    "build": "tsc ./index.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mikael Brevik",
   "license": "ISC",
   "dependencies": {
-    "@keyv/mongo": "^1.1.0",
-    "@mojotech/json-type-validation": "^3.1.0",
     "@types/node": "^10.12.18",
     "dotenv": "^6.2.0",
-    "mongodb": "^3.1.13",
     "node-fetch": "^2.3.0",
     "prompts": "^2.0.1",
     "rc": "^1.2.8"
   },
   "devDependencies": {
-    "@types/glob": "^7.1.1",
-    "@types/mongodb": "^3.1.19",
     "@types/node-fetch": "^2.1.4",
     "@types/prompts": "^1.2.0",
     "@types/rc": "^1.1.0",
-    "glob": "^7.1.3",
-    "nodemon": "^1.18.9",
     "ts-node": "^8.0.1",
     "typescript": "^3.2.4"
   }
