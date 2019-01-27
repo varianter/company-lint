@@ -6,7 +6,7 @@ const handler = json<LintRuleSet, LintRuleSet>(async function(
   collection
 ) {
   const lints = await collection
-    .find()
+    .find({ save: true })
     .sort({ created: -1 })
     .limit(1)
     .toArray();

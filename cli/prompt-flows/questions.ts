@@ -39,6 +39,7 @@ export async function confirm(message: string): Promise<boolean> {
 }
 
 export async function newCategoryConfirm(): Promise<boolean> {
+  console.log("\n");
   return confirm("Add more categories?");
 }
 

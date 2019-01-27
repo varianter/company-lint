@@ -7,7 +7,7 @@ const handler = json<LintRuleSet, RespondType>(async function(
   respond,
   collection
 ) {
-  const data = await collection.find();
+  const data = await collection.find({ save: true });
   const lints = await data.toArray();
 
   return respond({

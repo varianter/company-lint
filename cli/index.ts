@@ -33,13 +33,15 @@ async function start() {
 
   const save = await confirm("Save rule set?");
 
-  if (!save) {
-    return console.log("Not saving.");
-  }
-
   try {
-    const id = await add(data);
-    console.log(`Stored lint results (id ${id})`);
+    const id = await add({
+      save,
+      categories: data
+    });
+
+    if (save) {
+      console.log(`Stored lint results (id ${id})`);
+    }
   } catch (e) {
     console.log("Could not save:", e.message);
   }

@@ -1,6 +1,6 @@
 import fetch, { Headers } from "node-fetch";
 
-import { LintRuleSet, AddRespondType, LintCategory } from "../lib/types";
+import { LintRuleSet, AddRespondType } from "../lib/types";
 import config from "./config";
 
 export async function latest() {
@@ -11,8 +11,8 @@ export async function all() {
   return request<LintRuleSet[]>("all");
 }
 
-export async function add(ruleset: LintCategory[]) {
-  const result = await post<LintCategory[], AddRespondType>("add", ruleset);
+export async function add(ruleset: LintRuleSet) {
+  const result = await post<LintRuleSet, AddRespondType>("add", ruleset);
   if (!result.success) {
     throw new Error(result.error);
   }

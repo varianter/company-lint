@@ -12,7 +12,8 @@ export type LintCategory = {
 };
 
 export type LintRuleSet = {
-  created: string;
+  created?: string;
+  save: boolean;
   categories: Array<LintCategory>;
 };
 

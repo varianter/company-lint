@@ -1,4 +1,4 @@
-import { LintRuleSet, LintCategory, AddRespondType } from "../../lib/types";
+import { LintRuleSet, AddRespondType } from "../../lib/types";
 import { lintRuleDecoder } from "../../lib/types.validation";
 import { jsonSecured, jsonBody } from "../../lib/api";
 import { constants } from "http2";
@@ -13,11 +13,11 @@ const handler = jsonSecured<LintRuleSet, AddRespondType>(async function(
       throw new Error("Method not allowed");
     }
 
-    const data = await jsonBody<LintCategory[]>(req);
-    const lintRules = lintRuleDecoder.runWithException(data);
+    const data = await jsonBody<LintRuleSet>(req);
+    const lintRuleSet = lintRuleDecoder.runWithException(data);
     const result = await collection.insertOne({
-      created: Date.now().toString(),
-      categories: lintRules
+      ...lintRuleSet,
+      created: Date.now().toString()
     });
 
     respond({
