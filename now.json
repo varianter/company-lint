@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "alias": "api.lint.variantapp.com",
   "builds": [
     {
       "src": "./api/**/*.ts",
