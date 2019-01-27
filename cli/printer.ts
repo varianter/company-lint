@@ -42,6 +42,6 @@ function printCategory(category: LintCategory) {
 }
 
 export default function print(ruleSet: LintCategory[]): void {
-  console.log("\n\nRule set:");
+  console.log("\n");
   ruleSet.forEach(printCategory);
 }
