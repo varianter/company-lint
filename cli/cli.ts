@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import runLint from "./commands/lint";
 import runLatest from "./commands/latest";
 import runConfig from "./commands/config";
