@@ -3,6 +3,7 @@ export type LintRule = {
   assert: boolean;
   comment?: string;
   suggestedEdit?: string;
+  shouldBeRemoved?: boolean;
 };
 
 export type LintCategory = {

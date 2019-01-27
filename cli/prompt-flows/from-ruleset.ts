@@ -2,6 +2,76 @@ import { confirm, questionLoop, categoryLoop } from "./utils";
 import { LintCategory, LintRule } from "../../lib/types";
 import prompts from "prompts";
 
+type EditTypes = "ShouldRemove" | "Comment" | "SuggestEdit" | "NoChange";
+
+export async function editQuestion(): Promise<EditTypes> {
+  const res = await prompts({
+    type: "select",
+    name: "edit",
+    message: "Any change or comment to the question?",
+    choices: [
+      { title: "No changes", value: "NoChange" },
+      { title: "Should be removed", value: "ShouldRemove" },
+      { title: "Add comment", value: "Comment" },
+      { title: "Suggest edit", value: "SuggestEdit" }
+    ]
+  });
+
+  if (typeof res.edit === "undefined") {
+    return "NoChange";
+  }
+
+  return res.edit as EditTypes;
+}
+
+async function editLoop(rule: LintRule): Promise<LintRule> {
+  let edit: EditTypes;
+  while ((edit = await editQuestion()) !== "NoChange") {
+    switch (edit) {
+      case "Comment":
+        const comment = await prompts({
+          type: "text",
+          name: "comment",
+          message: "Any comments on the point? (leave empty if not)"
+        });
+
+        rule = {
+          ...rule,
+          comment: comment.comment
+        };
+        break;
+
+      case "ShouldRemove":
+        const removeQuestion = await prompts({
+          type: "confirm",
+          name: "remove",
+          message: "Should this question be removed?",
+          initial: false
+        });
+
+        rule = {
+          ...rule,
+          shouldBeRemoved: removeQuestion.remove
+        };
+        break;
+
+      case "SuggestEdit":
+        const suggestedEdit = await prompts({
+          type: "text",
+          name: "suggestedEdit",
+          message: "Any change to the original question? (leave empty if not)"
+        });
+        rule = {
+          ...rule,
+          suggestedEdit: suggestedEdit.suggestedEdit
+        };
+        break;
+    }
+  }
+
+  return rule;
+}
+
 async function answer(
   originalQuestion: LintRule
 ): Promise<LintRule | undefined> {
@@ -14,36 +84,10 @@ async function answer(
     initial: true
   });
 
-  if (typeof assert.assert === "undefined") {
-    return undefined;
-  }
-  const removeQuestion = await prompts({
-    type: "confirm",
-    name: "remove",
-    message: "Should this question be removed?",
-    initial: false
-  });
-  if (removeQuestion.remove) {
-    return undefined;
-  }
-
-  const comment = await prompts({
-    type: "text",
-    name: "comment",
-    message: "Any comments on the point? (leave empty if not)"
-  });
-  const suggestedEdit = await prompts({
-    type: "text",
-    name: "suggestedEdit",
-    message: "Any change to the original question? (leave empty if not)"
-  });
-
-  return {
+  return editLoop({
     question,
-    assert: assert.assert,
-    comment: comment.comment,
-    suggestedEdit: suggestedEdit.suggestedEdit
-  };
+    assert: Boolean(assert.assert)
+  });
 }
 
 async function fromCategory(category: LintCategory): Promise<LintCategory> {
