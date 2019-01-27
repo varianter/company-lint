@@ -1,5 +1,5 @@
 import { confirm, questionLoop, categoryLoop } from "./questions";
-import { LintCategory, LintRule } from "../../lib/types";
+import { LintCategory, LintRule } from "../index.d";
 import prompts from "prompts";
 
 type EditTypes = "ShouldRemove" | "Comment" | "SuggestEdit" | "NoChange";

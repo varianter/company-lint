@@ -1,4 +1,4 @@
-import { LintCategory } from "../lib/types";
+import { LintCategory } from "../index.d";
 
 export function empty(obj: LintCategory[]) {
   if (!obj || Object.keys(obj).length === 0) {

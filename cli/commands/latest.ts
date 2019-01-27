@@ -1,6 +1,6 @@
-import { empty } from "../helpers";
-import { latest } from "../api";
-import print from "../printer";
+import { empty } from "../lib/helpers";
+import { latest } from "../lib/api";
+import print from "../lib/printer";
 import chalk from "chalk";
 
 export default async function() {

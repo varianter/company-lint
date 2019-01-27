@@ -1,4 +1,4 @@
-import { LintCategory, LintRule } from "../lib/types";
+import { LintCategory, LintRule } from "../index.d";
 import chalk from "chalk";
 
 function printRuleSet(rule: LintRule) {

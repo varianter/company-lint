@@ -1,6 +1,6 @@
 import fetch, { Headers } from "node-fetch";
 
-import { LintRuleSet, AddRespondType } from "../lib/types";
+import { LintRuleSet, AddRespondType } from "../../api-lib/types";
 import config from "./config";
 
 export async function latest() {

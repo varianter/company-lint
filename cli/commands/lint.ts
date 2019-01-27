@@ -1,10 +1,10 @@
 import fromRuleSet from "../prompt-flows/from-ruleset";
 import newRuleSet from "../prompt-flows/new-ruleset";
 
-import { latest, add } from "../api";
-import print from "../printer";
+import { latest, add } from "../lib/api";
+import print from "../lib/printer";
 import { confirm } from "../prompt-flows/questions";
-import { empty } from "../helpers";
+import { empty } from "../lib/helpers";
 
 export default async function start() {
   const l = await latest();

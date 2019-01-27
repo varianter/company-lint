@@ -1,4 +1,4 @@
-import { LintCategory } from "../../lib/types";
+import { LintCategory } from "../index.d";
 import { categoryLoop } from "./questions";
 
 export default async function(): Promise<LintCategory[]> {

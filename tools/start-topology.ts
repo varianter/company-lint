@@ -1,5 +1,5 @@
 import { createServer, IncomingMessage, ServerResponse } from "http";
-import { createError, createOut } from "../lib/api";
+import { createError, createOut } from "../api-lib/api";
 import { dirname, resolve } from "path";
 import glob from "glob";
 

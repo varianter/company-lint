@@ -1,6 +1,6 @@
-import { LintRuleSet, AddRespondType } from "../../lib/types";
-import { lintRuleDecoder } from "../../lib/types.validation";
-import { jsonSecured, jsonBody } from "../../lib/api";
+import { LintRuleSet, AddRespondType } from "../../api-lib/types";
+import { lintRuleDecoder } from "../../api-lib/types.validation";
+import { jsonSecured, jsonBody } from "../../api-lib/api";
 import { constants } from "http2";
 
 const handler = jsonSecured<LintRuleSet, AddRespondType>(async function(

@@ -1,5 +1,5 @@
+import { LintRule, LintCategory } from "../index.d";
 import prompts from "prompts";
-import { LintRule, LintCategory } from "../../lib/types";
 
 type ThunkPredicate = () => Promise<boolean>;
 
