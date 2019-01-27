@@ -1,10 +1,27 @@
 import prompts from "prompts";
 import { LintRule, LintCategory } from "../../lib/types";
+
+type ThunkPredicate = () => Promise<boolean>;
+
 const opts = {
   onCancel() {
     return false;
   }
 };
+
+export async function confirmLoop<T>(
+  predicate: ThunkPredicate,
+  adder: () => Promise<T | []>
+): Promise<T[]> {
+  let addMore = true;
+  let data: T[] = [];
+
+  do {
+    data = data.concat(await adder());
+    addMore = await predicate();
+  } while (addMore);
+  return data;
+}
 
 export async function confirm(message: string): Promise<boolean> {
   const res = await prompts({
@@ -30,18 +47,10 @@ export async function newQuestionConfirm(): Promise<boolean> {
 }
 
 export async function questionLoop(): Promise<LintRule[]> {
-  let addMoreQuestions = true;
-  let questions: LintRule[] = [];
-
-  do {
+  return confirmLoop(newQuestionConfirm, async () => {
     const question = await newQuestion();
-    if (question) {
-      questions.push(question);
-    }
-
-    addMoreQuestions = await newQuestionConfirm();
-  } while (addMoreQuestions);
-  return questions;
+    return question ? question : [];
+  });
 }
 
 export async function newCategory(): Promise<LintCategory | undefined> {
@@ -64,19 +73,10 @@ export async function newCategory(): Promise<LintCategory | undefined> {
 }
 
 export async function categoryLoop(): Promise<LintCategory[]> {
-  let addMoreQuestions = true;
-
-  let categories: LintCategory[] = [];
-  do {
+  return confirmLoop(newCategoryConfirm, async () => {
     const category = await newCategory();
-    if (category) {
-      categories.push(category);
-    }
-
-    addMoreQuestions = await newCategoryConfirm();
-  } while (addMoreQuestions);
-
-  return categories;
+    return category ? category : [];
+  });
 }
 
 export async function newQuestion(): Promise<LintRule | undefined> {
