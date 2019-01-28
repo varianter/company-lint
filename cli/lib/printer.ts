@@ -11,7 +11,7 @@ function printRuleSet(rule: LintRule) {
     console.log(chalk.italic(`    Comment: ${rule.comment}`));
   }
   if (rule.suggestedEdit) {
-    console.log(chalk.italic(`    Suggeste edit: ${rule.suggestedEdit}`));
+    console.log(chalk.italic(`    Suggested edit: ${rule.suggestedEdit}`));
   }
   if (rule.shouldBeRemoved) {
     console.log(chalk.italic(`    Should not be included next time.`));
