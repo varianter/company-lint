@@ -21,10 +21,7 @@ export async function getCollection<T>() {
   }
   const db = client.db(dbName);
 
-  return {
-    collection: db.collection<T>(collectionName),
-    client
-  };
+  return db.collection<T>(collectionName);
 }
 
 export type Collection<T> = Collection<T>;

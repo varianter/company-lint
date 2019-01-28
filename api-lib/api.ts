@@ -43,12 +43,8 @@ export function json<G, T>(handler: Handler<G, T>) {
     res.writeHead(200, { "Content-Type": "application/json" });
     const out = createOut(res);
     const error = createError(res, out);
-    const { collection, client } = await getCollection<G>();
+    const collection = await getCollection<G>();
     await handler(out, collection, { req, res, error });
-
-    if (process.env.IS_NOW) {
-      client.close();
-    }
   }
 
   // For running standalone endpoint locally
