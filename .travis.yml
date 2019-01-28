@@ -1,0 +1,13 @@
+before_deploy:
+  - cd ./cli
+  - npm install
+  - npm run build
+
+deploy:
+  provider: npm
+  email: mikaelbre@gmail.com
+  api_key:
+    secure: YcrLLnX06Wj/HvP5IreHqVQ+fQ8ubN+bTf55j2zCWrclCN7HA+LScDmYxtKwtGLPbg3C6TbKq+OfYAdtacYXsJJ6RbdXYBm5I29GjQyB2MQjAFMeUSOpDxzqPtJKnpgCGfTSzeVYJs4MkG4pdJoTLfcuRCZWWYr4yaQIn8hDKiVV52BYAxIJvRYUhwfeCmx76UtL/U5tXTFZgv/985GSUXIseRxkv5sv0EBPovWv921Zz66v+5iYoW/PQ0uoUKrBWN/PL3WL42j5iM569IcoFhFhCJIVVQKkV4Qt59I1QtqtHzeEEQbw91JSt+qoB6Eb3DRRbYgIVT7us7gjlJgADCmqAO/wi2VEu+H9dSWO4rtoGOldoumOiLcs+lLchFqoRLXLKMCPZyXObSvJ0g7WSLkOQ88cqpa+6C3E1J4f+4h8QAXCV7eMh4D6dndLzJYDG0dOJ0olKL4MOuJIGDrfSKjrZ90348ykAyYC/slD1Yh0geNALANSiLf3+w1xbxoaQpRYmqHWkC3yqs/bnHstyYPfYqZVoPo6QAssQSx3Finp1USRRWdZz5TWiInEYaXFb7ujCHTMtg6nhuJozrwQEtBO/+6wkZCNagUbMuUd8tdsdiWg9rJKpo7VCHsmAtdKcqjia4PjcVVlgH+YVPC58v6l74CJn3yKW/kMLeDiKGg=
+  on:
+    tags: true
+    repo: varianter/company-lint
