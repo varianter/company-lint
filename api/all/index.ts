@@ -1,5 +1,5 @@
 import { json } from "../../api-lib/api";
-import { LintRuleSet } from "../../api-lib/types";
+import { LintRuleSet } from "../../cli";
 
 type RespondType = { success: true; lints: LintRuleSet[] };
 

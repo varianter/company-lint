@@ -1,4 +1,4 @@
-import { LintRuleSet, AddRespondType } from "../../api-lib/types";
+import { LintRuleSet, AddRespondType } from "../../cli";
 import { lintRuleDecoder } from "../../api-lib/types.validation";
 import { jsonSecured, jsonBody } from "../../api-lib/api";
 import { constants } from "http2";

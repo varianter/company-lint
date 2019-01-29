@@ -1,4 +1,4 @@
-import { LintRuleSet } from "./types";
+import { LintRuleSet } from "../cli";
 import {
   Decoder,
   object,

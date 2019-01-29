@@ -1,5 +1,5 @@
 import { json } from "../../api-lib/api";
-import { LintRuleSet } from "../../api-lib/types";
+import { LintRuleSet } from "../../cli";
 
 const handler = json<LintRuleSet, LintRuleSet>(async function(
   respond,

@@ -1,6 +1,8 @@
 tools/
-cli/
 node_modules/
 .prettierrc
 .env
 .env.example
+cli/*
+cli/*.
+!cli/index.d.ts
