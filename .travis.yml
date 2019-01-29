@@ -1,17 +1,15 @@
 language: node_js
 node_js:
-  - "node"
-
+- node
 before_deploy:
-  - cd ./cli
-  - npm install
-  - npm run build
-
+- cd ./cli
+- npm install
+- npm run build
 deploy:
   provider: npm
   email: mikaelbre@gmail.com
   api_key:
-    secure: YcrLLnX06Wj/HvP5IreHqVQ+fQ8ubN+bTf55j2zCWrclCN7HA+LScDmYxtKwtGLPbg3C6TbKq+OfYAdtacYXsJJ6RbdXYBm5I29GjQyB2MQjAFMeUSOpDxzqPtJKnpgCGfTSzeVYJs4MkG4pdJoTLfcuRCZWWYr4yaQIn8hDKiVV52BYAxIJvRYUhwfeCmx76UtL/U5tXTFZgv/985GSUXIseRxkv5sv0EBPovWv921Zz66v+5iYoW/PQ0uoUKrBWN/PL3WL42j5iM569IcoFhFhCJIVVQKkV4Qt59I1QtqtHzeEEQbw91JSt+qoB6Eb3DRRbYgIVT7us7gjlJgADCmqAO/wi2VEu+H9dSWO4rtoGOldoumOiLcs+lLchFqoRLXLKMCPZyXObSvJ0g7WSLkOQ88cqpa+6C3E1J4f+4h8QAXCV7eMh4D6dndLzJYDG0dOJ0olKL4MOuJIGDrfSKjrZ90348ykAyYC/slD1Yh0geNALANSiLf3+w1xbxoaQpRYmqHWkC3yqs/bnHstyYPfYqZVoPo6QAssQSx3Finp1USRRWdZz5TWiInEYaXFb7ujCHTMtg6nhuJozrwQEtBO/+6wkZCNagUbMuUd8tdsdiWg9rJKpo7VCHsmAtdKcqjia4PjcVVlgH+YVPC58v6l74CJn3yKW/kMLeDiKGg=
+    secure: F11SM4ZGKdIqAPVmkb45KVqZslXMbHWuM8hQ4aU6EX1PkkvZJxtou+nKq+z3D0yFRpwBJq2W9lsFhcxyaqpaCIT4DRS5vBbPJQjAHMTzjVHEwhCyaZot/vhzNiUi8A9xz8vdeFsmZzYS3PeqW4W2SaAZAxKmcx6DAIv7fp2Fiz5NaNZPjeO7fvg9y1Bm0KFEw6QCm5tw+7W04wNoHjltwD4e+SKr/tMqEBq3zBci7nDGVWxZS6SwkoUCpff/MI/mwgQNze6uqIqbDrF5MUkXU4BlyUtAB3Gyj4g/qonQTi5NnG4tj+fKcCSn1I1Wui47Rk3ALhIHaVzF0qv8HzBEv4lwUJe2TVmZe+SUEiEJ4MwUpmdTSm62GKIBnDZAn3XSb6TSuNT4PX4ApWEvDt6nTE4jJC8RvhY+cUiugvNFRz9X58lCmHmhPqJ0EBRsaEjZcUvZNkDOTLp7+h0Bw5q3bNHOxv62w0rvaLLMufv1H3O+cP5HdahAuwdGB+0pUd1qqqWcy4HqN2DYY/PGDHF+RZKKLF0A17X9N4Cnepr2aZpvdMQKta0aznjXk+zxOPfSJB6QpWTGUk9I/OHZC1AH95io892sZwBCl4YIRhNKj5g9JXH46gWRP8xtiKrc1zCNBnJ4cPka7ySPut4H5ZMkiOArMwDvBZexGZ4e2ciXVys=
   on:
     tags: true
     repo: varianter/company-lint
